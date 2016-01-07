@@ -52,7 +52,11 @@ func ReverseMap(m map[string]int) map[int]string {
 }
 
 func main() {
-	reader, err := os.Open("images/test.jpg")
+	if len(os.Args) <= 1 {
+		fmt.Fprint(os.Stderr, "usage: go-colorweave <filename>")
+		return
+	}
+	reader, err := os.Open(os.Args[1])
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 	}
